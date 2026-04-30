@@ -1,5 +1,9 @@
 # Haschwalth
 
+<p align="center">
+  <img src="https://i.imgur.com/sDur73q.png" />
+</p>
+
 Haschwalth is a Rust-based Windows WDM kernel driver with a companion user-mode client named Requiem. The driver exposes a `\\.\Haschwalth` device and accepts buffered IOCTL requests for process, token, callback, and driver-list manipulation experiments.
 
 This project is intended for authorized research, lab testing, and driver-development study only. Several operations can destabilize or compromise a Windows system if used incorrectly. Do not run it on production machines or systems you do not own or have explicit permission to test.
@@ -46,16 +50,16 @@ That client opens `\\.\Haschwalth` and sends the IOCTLs exposed by the driver. I
 
 The driver currently implements IOCTL handlers for:
 
-- sending a test message to the driver log
-- terminating a process by PID
-- clearing PPL protection from a process
-- hiding a process by unlinking it from `ActiveProcessLinks`
-- copying the SYSTEM process token into a target process
-- applying a protected-process protection byte to a process
-- partially implemented enumeration/removal of selected process/thread/image callback slots
-- enumerating and disabling process/thread object callbacks
-- injecting a DLL path through a user-mode APC flow
-- unlinking the driver from the loaded module list
+- Sending a test message to the driver log
+- Terminating a process by PID
+- Clearing PPL protection from a process
+- Hiding a process by unlinking it from `ActiveProcessLinks`
+- Copying the SYSTEM process token into a target process
+- Applying a protected-process protection byte to a process
+- Partially implemented enumeration/removal of selected process/thread/image callback slots
+- Enumerating and disabling process/thread object callbacks
+- Injecting a DLL path through a user-mode APC flow
+- Unlinking the driver from the loaded module list
 
 Some callback enumeration code is experimental. Module ownership lookup for callback routines is currently stubbed and returns empty module metadata.
 
@@ -202,6 +206,7 @@ Thanks to the following projects and resources:
 
 - [Banshee](https://github.com/eversinc33/Banshee)
 - [FluxSec Rust Windows Driver guide](https://fluxsec.red/rust-windows-driver)
+- [ProcessHacker Documentation](https://processhacker.sourceforge.io/doc/ntfill_8h.html)
 
 ## Safety Notes
 
